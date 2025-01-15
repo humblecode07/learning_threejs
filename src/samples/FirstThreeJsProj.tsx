@@ -5,7 +5,7 @@ import gsap from 'gsap';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { Sky } from 'three/addons/objects/Sky.js'
 import { Timer } from 'three/addons/misc/Timer.js'
-import GUI from 'lil-gui';
+import GUI from 'lil-gui'
 import alpha from '../assets/floor/alpha.jpg'
 import rocksGroundCol from '../assets/floor/rocks_ground_02_col_2k.webp';
 import rocksGroundARM from '../assets/floor/rocks_ground_02_arm_2k.webp';
@@ -251,8 +251,8 @@ const FirstThreeJsProj = () => {
 
     // Floor GUI 
 
-    // gui.add(floor.material, 'displacementScale').min(0).max(1).step(0.001).name('floorDisplacementScale');
-    // gui.add(floor.material, 'displacementBias').min(-1).max(1).step(0.001).name('floorDisplacementBias');
+    gui.add(floor.material, 'displacementScale').min(0).max(1).step(0.001).name('floorDisplacementScale');
+    gui.add(floor.material, 'displacementBias').min(-1).max(1).step(0.001).name('floorDisplacementBias');
 
     // Walls
     const walls = new THREE.Mesh(
