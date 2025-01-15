@@ -4,10 +4,10 @@ import gsap from 'gsap';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import GUI from 'lil-gui';
 import diamond_ore from '../assets/diamond_block.jpg';
-import neil from '../assets/dl_neil.jpg';
-import freak from '../assets/freak.png';
-import moon from '../assets/moon.jpg';
-import crate from '../assets/csgo_crate.jpg';
+// import neil from '../assets/dl_neil.jpg';
+// import freak from '../assets/freak.png';
+// import moon from '../assets/moon.jpg';
+// import crate from '../assets/csgo_crate.jpg';
 
 const CreatingScene = () => {
   useEffect(() => {
@@ -27,7 +27,7 @@ const CreatingScene = () => {
       width: 1,
       depth: 1,
       widthSegments: 1,
-      heigthSegments: 1,
+      heightSegments: 1,
       depthSegments: 1,
       spin: () => {
         gsap.to(cube.rotation, {
@@ -39,54 +39,54 @@ const CreatingScene = () => {
       }
     }
 
-    gui.addColor(parameters, 'color').onChange((value) => {
+    gui.addColor(parameters, 'color').onChange((value: string) => {
       cube.material.color.set(value);
     });
 
-    gui.add(parameters, 'isWireframe').onChange((value) => {
+    gui.add(parameters, 'isWireframe').onChange((value: boolean) => {
       cube.material.wireframe = value;
     });
 
-    gui.add(parameters, 'x', -5, 5, 0.5).onChange((value) => {
+    gui.add(parameters, 'x', -5, 5, 0.5).onChange((value: number) => {
       cube.position.x = value;
     });
 
-    gui.add(parameters, 'elevation', -5, 5, 0.5).onChange((value) => {
+    gui.add(parameters, 'elevation', -5, 5, 0.5).onChange((value: number) => {
       cube.position.y = value;
     });
 
-    gui.add(parameters, 'visible').onChange((value) => {
+    gui.add(parameters, 'visible').onChange((value: boolean) => {
       cube.visible = value;
     });
 
-    gui.add(parameters, 'height', 1, 10, 1).onChange((value) => {
+    gui.add(parameters, 'height', 1, 10, 1).onChange((value: number) => {
       cube.geometry.dispose();
       cube.geometry = new THREE.BoxGeometry(parameters.width, value, parameters.depth, parameters.widthSegments, parameters.heightSegments, parameters.depthSegments);
     });
 
-    gui.add(parameters, 'width', 1, 10, 1).onChange((value) => {
+    gui.add(parameters, 'width', 1, 10, 1).onChange((value: number) => {
       cube.geometry.dispose();
       cube.geometry = new THREE.BoxGeometry(value, parameters.height, parameters.depth, parameters.widthSegments, parameters.heightSegments, parameters.depthSegments);
     });
 
-    gui.add(parameters, 'depth', 1, 10, 1).onChange((value) => {
+    gui.add(parameters, 'depth', 1, 10, 1).onChange((value: number) => {
       cube.geometry.dispose();
       cube.geometry = new THREE.BoxGeometry(parameters.width, parameters.height, value, parameters.widthSegments, parameters.heightSegments, parameters.depthSegments);
     });
 
-    gui.add(parameters, 'widthSegments', 1, 10, 1).onChange((value) => {
+    gui.add(parameters, 'widthSegments', 1, 10, 1).onChange((value: number) => {
       cube.geometry.dispose();
       cube.geometry = new THREE.BoxGeometry(parameters.width, parameters.height, parameters.depth, value, parameters.heightSegments, parameters.depthSegments)
     });
 
-    gui.add(parameters, 'heigthSegments', 1, 10, 1).onChange((value) => {
+    gui.add(parameters, 'heightSegments', 1, 10, 1).onChange((value: number) => {
       cube.geometry.dispose();
       cube.geometry = new THREE.BoxGeometry(parameters.width, parameters.height, parameters.depth, parameters.widthSegments, value, parameters.depthSegments)
     });
 
-    gui.add(parameters, 'depthSegments', 1, 10, 1).onChange((value) => {
+    gui.add(parameters, 'depthSegments', 1, 10, 1).onChange((value: number) => {
       cube.geometry.dispose();
-      cube.geometry = new THREE.BoxGeometry(parameters.width, parameters.height, parameters.depth, parameters.widthSegments, parameters.heigthSegments, value)
+      cube.geometry = new THREE.BoxGeometry(parameters.width, parameters.height, parameters.depth, parameters.widthSegments, parameters.heightSegments, value)
     });
 
     gui.add(parameters, 'spin');
@@ -97,9 +97,6 @@ const CreatingScene = () => {
     // const camera = new THREE.OrthographicCamera( -10 * aspectRatio, 10 * aspectRatio, 10, -10, 1, 1000 );
 
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-
-    // Turn on physically correct lighting
-    renderer.physicallyCorrectLights = true;
 
     renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -141,10 +138,10 @@ const CreatingScene = () => {
     controls.enableDamping = true;
 
     // Create boundary settings
-    const bounds = {
-      x: 8,
-      y: 4
-    };
+    // const bounds = {
+    //   x: 8,
+    //   y: 4
+    // };
 
     // Create sliders for camera and boundaries
     // controlsDiv.innerHTML = `
@@ -230,15 +227,15 @@ const CreatingScene = () => {
       new THREE.MeshStandardMaterial({ map: diamondOreTexture })
     );
 
-    const cubeTwo = new THREE.Mesh(
-      new THREE.BoxGeometry(1, 1, 2),
-      new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
-    );
+    // const cubeTwo = new THREE.Mesh(
+    //   new THREE.BoxGeometry(1, 1, 2),
+    //   new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
+    // );
 
-    const cubeThree = new THREE.Mesh(
-      new THREE.BoxGeometry(1, 1, 1),
-      new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
-    )
+    // const cubeThree = new THREE.Mesh(
+    //   new THREE.BoxGeometry(1, 1, 1),
+    //   new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
+    // )
 
     const sphere = new THREE.Mesh(
       new THREE.SphereGeometry(1, 32, 16),
@@ -261,7 +258,7 @@ const CreatingScene = () => {
 
     geometry.setAttribute('position', positionsAttribute);
 
-    const someShape = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true }))
+    // const someShape = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true }));
 
     const group = new THREE.Group();
 
@@ -279,10 +276,10 @@ const CreatingScene = () => {
     camera.position.y = 0;
 
     // Movement speed
-    const speed = {
-      x: 0.1,
-      y: 0.1
-    };
+    // const speed = {
+    //   x: 0.1,
+    //   y: 0.1
+    // };
 
     // Handle slider changes
     // document.getElementById('cameraZ').addEventListener('input', (e) => {
@@ -350,7 +347,7 @@ const CreatingScene = () => {
     //   cubeTwo.scale.z = cubeTwo.scale.x;
     // }
 
-    let time = Date.now();
+    // let time = Date.now();
 
     const clock = new THREE.Clock();
 
@@ -369,9 +366,9 @@ const CreatingScene = () => {
 
     function animate() {
 
-      const currTime = Date.now();
-      const deltaTime = currTime - time;
-      time = currTime
+      // const currTime = Date.now();
+      // const deltaTime = currTime - time;
+      // time = currTime
 
       const elapsedClock = clock.getElapsedTime();
 

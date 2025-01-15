@@ -1,7 +1,7 @@
-import React from 'react'
+// import React from 'react'
 import { useEffect } from 'react'
 import * as THREE from 'three'
-import gsap from 'gsap';
+// import gsap from 'gsap';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { Sky } from 'three/addons/objects/Sky.js'
 import { Timer } from 'three/addons/misc/Timer.js'
@@ -44,7 +44,8 @@ const FirstThreeJsProj = () => {
     // RENDERER
     const renderer = new THREE.WebGLRenderer({ antialias: true });
 
-    renderer.physicallyCorrectLights = true
+    console.log(THREE.REVISION);
+
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
@@ -206,7 +207,7 @@ const FirstThreeJsProj = () => {
     light.shadow.mapSize.height = 256;
     light.shadow.camera.top = 8;
     light.shadow.camera.right = 8;
-    light.shadow.camera.botoom = -8;
+    light.shadow.camera.bottom = -8;
     light.shadow.camera.left = -8;
     light.shadow.camera.near = 1;
     light.shadow.camera.far = 20;
@@ -224,10 +225,10 @@ const FirstThreeJsProj = () => {
     ghost3.shadow.camera.far = 10;
 
     // GEOMETRIES
-    const sphere = new THREE.Mesh(
-      new THREE.SphereGeometry(1, 32, 32),
-      new THREE.MeshStandardMaterial({ roughness: 0.7 })
-    )
+    // const sphere = new THREE.Mesh(
+    //   new THREE.SphereGeometry(1, 32, 32),
+    //   new THREE.MeshStandardMaterial({ roughness: 0.7 })
+    // );
 
     // Floor
     const floor = new THREE.Mesh(
@@ -259,7 +260,7 @@ const FirstThreeJsProj = () => {
       new THREE.BoxGeometry(4, 2.5, 4, 100, 100, 100),
       new THREE.MeshStandardMaterial({
         map: wallColorTexture,
-        aoMAP: wallARMTexture,
+        aoMap: wallARMTexture,
         roughnessMap: wallARMTexture,
         metalnessMap: wallARMTexture,
         normalMap: wallNormalTexture,
@@ -276,7 +277,7 @@ const FirstThreeJsProj = () => {
       new THREE.ConeGeometry(3.5, 1.5, 4),
       new THREE.MeshStandardMaterial({
         map: roofColorTexture,
-        aoMAP: roofARMTexture,
+        aoMap: roofARMTexture,
         roughnessMap: roofARMTexture,
         metalnessMap: roofARMTexture,
         normalMap: roofNormalTexture,
@@ -311,7 +312,7 @@ const FirstThreeJsProj = () => {
     const bushMaterial = new THREE.MeshStandardMaterial({
       color: 0xccffcc,
       map: bushColorTexture,
-      aoMAP: bushARMTexture,
+      aoMap: bushARMTexture,
       roughnessMap: bushARMTexture,
       metalnessMap: bushARMTexture,
       normalMap: bushNormalTexture
@@ -341,7 +342,7 @@ const FirstThreeJsProj = () => {
     const graveGeometry = new THREE.BoxGeometry(0.6, 0.8, 0.2);
     const graveMaterial = new THREE.MeshStandardMaterial({
       map: graveColorTexture,
-      aoMAP: graveARMTexture,
+      aoMap: graveARMTexture,
       roughnessMap: graveARMTexture,
       metalnessMap: graveARMTexture,
       normalMap: graveNormalTexture
