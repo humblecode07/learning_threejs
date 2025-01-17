@@ -204,8 +204,16 @@ const CreatingScene = () => {
       }
     );
 
-    // texture.colorSpace = THREE.SRGBColorSpace
+    // texture.colorSpace = THREE.SRGBColorSpace;
 
+    // diamondOreTexture.repeat.x = 3;
+    // diamondOreTexture.repeat.y = 3;
+    // diamondOreTexture.wrapS = THREE.RepeatWrapping;
+    // diamondOreTexture.wrapT = THREE.RepeatWrapping;
+
+    diamondOreTexture.generateMipmaps = false;
+    diamondOreTexture.minFilter = THREE.NearestFilter;
+    diamondOreTexture.magFilter = THREE.NearestFilter;
 
     // Lighting
 
