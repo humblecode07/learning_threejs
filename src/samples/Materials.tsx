@@ -120,6 +120,7 @@ const Materials = () => {
       const material = new THREE.MeshStandardMaterial();
       material.metalness = 0.7;
       material.roughness = 0.2;
+      material.side = THREE.DoubleSide;
 
       gui.add(material, 'metalness', 0, 1, 0.001).onChange((value: number) => {
          material.metalness = value
@@ -136,6 +137,10 @@ const Materials = () => {
       // gui.add(material, 'displacementScale', 0, 1, 0.001).onChange((value: number) => {
       //    material.displacementScale = value
       // });
+
+      gui.addColor(material, 'color').onChange((value: string) => {
+         material.color.set(value);
+      })
     
       const sphere = new THREE.Mesh(
          new THREE.SphereGeometry(0.5, 64, 64),
@@ -150,7 +155,7 @@ const Materials = () => {
          material
       );
 
-      plane.geometry.setAttribute('uv2', new THREE.BufferAttribute(plane.geometry.attributes.uv.array, 2)); 
+      plane.geometry.setAttribute('uv2', new THREE.BufferAttribute(plane.geometry.attributes.uv.array, 2));
 
       const torus = new THREE.Mesh(
          new THREE.TorusGeometry(0.3, 0.2, 64, 128),
@@ -176,15 +181,16 @@ const Materials = () => {
       function animate() {
          timer.update();
          const elapsedTime = timer.getElapsed();
+         orbitControl.update();
 
          // Update Objects
-         // sphere.rotation.y = elapsedTime * 0.25;
-         // plane.rotation.y = elapsedTime * 0.25;
-         // torus.rotation.y = elapsedTime * 0.25;
+         sphere.rotation.y = elapsedTime * 0.25;
+         plane.rotation.y = elapsedTime * 0.25;
+         torus.rotation.y = elapsedTime * 0.25;
 
-         // sphere.rotation.x = elapsedTime * 0.30;
-         // plane.rotation.x = elapsedTime * 0.30;
-         // torus.rotation.x = elapsedTime * 0.30;
+         sphere.rotation.x = elapsedTime * 0.30;
+         plane.rotation.x = elapsedTime * 0.30;
+         torus.rotation.x = elapsedTime * 0.30;
 
          renderer.render(scene, camera);
       }
