@@ -3,6 +3,7 @@ import CreatingScene from "./samples/CreatingScene";
 import FirstThreeJsProj from "./samples/FirstThreeJsProj";
 import Lights from "./samples/Lights";
 import Materials from "./samples/Materials";
+import Shadows from "./samples/Shadows";
 import ThreeDText from "./samples/ThreeDText";
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
       {/* <FirstThreeJsProj /> */}
       {/* <Materials /> */}
       {/* <ThreeDText /> */}
-      <Lights />
+      {/* <Lights /> */}
+      <Shadows />
     </>
   )
 }
