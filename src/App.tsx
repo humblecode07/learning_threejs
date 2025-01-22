@@ -1,6 +1,7 @@
 import CreatingScene from "./samples/CreatingScene";
 // import DrawingLines from "./samples/drawingLines";
 import FirstThreeJsProj from "./samples/FirstThreeJsProj";
+import GalaxyGenerator from "./samples/GalaxyGenerator";
 import Lights from "./samples/Lights";
 import Materials from "./samples/Materials";
 import Particles from "./samples/Particles";
@@ -17,7 +18,8 @@ function App() {
       {/* <ThreeDText /> */}
       {/* <Lights /> */}
       {/* <Shadows /> */}
-      <Particles />
+      {/* <Particles /> */}
+      <GalaxyGenerator />
     </>
   )
 }
