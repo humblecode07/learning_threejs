@@ -129,6 +129,9 @@ const GalaxyGenerator = () => {
       gui.addColor(parameters, 'insideColor').onFinishChange(generateGalaxy);  
       gui.addColor(parameters, 'outsideColor').onFinishChange(generateGalaxy);  
 
+      const axesHelper = new THREE.AxesHelper();
+      scene.add(axesHelper);
+
       // Animate
       function animate () {
          orbitControls.update();
