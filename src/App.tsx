@@ -5,6 +5,7 @@ import GalaxyGenerator from "./samples/GalaxyGenerator";
 import Lights from "./samples/Lights";
 import Materials from "./samples/Materials";
 import Particles from "./samples/Particles";
+import Physics from "./samples/Physics";
 import ScrollBasedAnimation from "./samples/ScrollBasedAnimation";
 import Shadows from "./samples/Shadows";
 import ThreeDText from "./samples/ThreeDText";
@@ -21,7 +22,8 @@ function App() {
       {/* <Shadows /> */}
       {/* <Particles /> */}
       {/* <GalaxyGenerator /> */}
-      <ScrollBasedAnimation />
+      {/* <ScrollBasedAnimation /> */}
+      <Physics />
     </>
   )
 }
