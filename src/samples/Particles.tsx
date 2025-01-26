@@ -136,6 +136,8 @@ const Particles = () => {
 
          orbitControls.update();
 
+         // console.log(Math.sin(elapsedTime - particlesGeometry.attributes.position.array[0]));
+
          // Update particles
          // particles.rotation.y = elapsedTime * 0.2;
 

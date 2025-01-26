@@ -251,7 +251,7 @@ const Physics = () => {
 
          orbitControls.update();
 
-         // Update Physics Worl
+         // Update Physics World
          world.step(1 / 60, deltaTime, 3);
 
          for (const object of objectsToUpdate) {
