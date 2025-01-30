@@ -1,4 +1,5 @@
 import CreatingScene from "./samples/CreatingScene";
+import CustomModelWithBlender from "./samples/CustomModelWithBlender";
 // import DrawingLines from "./samples/drawingLines";
 import FirstThreeJsProj from "./samples/FirstThreeJsProj";
 import GalaxyGenerator from "./samples/GalaxyGenerator";
@@ -27,7 +28,8 @@ function App() {
       {/* <ScrollBasedAnimation /> */}
       {/* <Physics /> */}
       {/* <ImportedModels /> */}
-      <Raycaster />
+      {/* <Raycaster /> */}
+      <CustomModelWithBlender />
     </>
   )
 }

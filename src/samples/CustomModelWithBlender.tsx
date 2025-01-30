@@ -1,0 +1,114 @@
+import GUI from 'lil-gui';
+import { useEffect } from 'react';
+import * as THREE from 'three';
+import { GLTFLoader, OrbitControls } from 'three/examples/jsm/Addons.js';
+import { DRACOLoader } from 'three/examples/jsm/Addons.js';
+
+const CustomModelWithBlender = () => {
+   useEffect(() => {
+      let aspectRatio = window.innerWidth / window.innerHeight;
+
+      // Lil Guigui
+      const gui = new GUI();
+
+      // Scene
+      const scene = new THREE.Scene();
+
+      // Render
+      const renderer = new THREE.WebGLRenderer();
+
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      document.body.appendChild(renderer.domElement);
+
+      window.addEventListener('resize', () => {
+         aspectRatio = window.innerWidth / window.innerHeight;
+         camera.aspect = aspectRatio;
+         camera.updateProjectionMatrix();
+
+         renderer.setSize(window.innerWidth, window.innerHeight);
+         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      })
+
+      // Camera
+      const camera = new THREE.PerspectiveCamera(35, aspectRatio, 0.1, 1000);
+      camera.position.set(5, 5, 5);
+
+      scene.add(camera);
+
+      // Lighting
+      const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      directionalLight.position.set(2, 2, 2);
+      directionalLight.castShadow = true;
+      directionalLight.shadow.mapSize.width = 1024;
+      directionalLight.shadow.mapSize.height = 1024;
+      directionalLight.shadow.camera.top = 5;
+      directionalLight.shadow.camera.right = 5;
+      directionalLight.shadow.camera.bottom = -5;
+      directionalLight.shadow.camera.left = -5;
+      directionalLight.shadow.camera.near = 1;
+      directionalLight.shadow.camera.far = 6;
+      directionalLight.shadow.radius = 5;
+
+      scene.add(ambientLight, directionalLight);
+
+      // Orbit Controls
+      const orbitControls = new OrbitControls(camera, renderer.domElement);
+      orbitControls.enableDamping = true;
+
+      // Models
+      const dracoLoader = new DRACOLoader();
+      dracoLoader.setDecoderPath('/draco/');
+
+      const gltfLoader = new GLTFLoader();
+      gltfLoader.setDRACOLoader(dracoLoader);
+
+      gltfLoader.load(
+         '/models/hamburger.glb',
+         (gltf) => {
+            gltf.scene.scale.setScalar(.25);
+            scene.add(gltf.scene);
+         },
+         (progress) => {
+            console.log('progress');
+            console.log(progress)
+         },
+         (error) => {
+            console.log('error');
+            console.log(error);
+         }
+      )
+
+      // Objects
+      const plane = new THREE.Mesh(
+         new THREE.PlaneGeometry(5, 5),
+         new THREE.MeshStandardMaterial()
+      )
+      plane.rotation.x = Math.PI * -.5;
+
+      scene.add(plane);
+
+      // Animate
+      const animate = () => {
+         orbitControls.update();
+
+         renderer.render(scene, camera);
+      }  
+
+      renderer.setAnimationLoop(animate);
+
+      // Cleanup
+      return () => {
+         renderer.dispose();
+         document.body.removeChild(renderer.domElement);
+         gui.destroy();
+      }
+   }, [])
+
+   return null;
+}
+
+export default CustomModelWithBlender
