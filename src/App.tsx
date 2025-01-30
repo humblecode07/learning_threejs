@@ -9,6 +9,7 @@ import Materials from "./samples/Materials";
 import Particles from "./samples/Particles";
 import Physics from "./samples/Physics";
 import Raycaster from "./samples/Raycaster";
+import RealisticRender from "./samples/RealisticRender";
 import ScrollBasedAnimation from "./samples/ScrollBasedAnimation";
 import Shadows from "./samples/Shadows";
 import ThreeDText from "./samples/ThreeDText";
@@ -29,7 +30,8 @@ function App() {
       {/* <Physics /> */}
       {/* <ImportedModels /> */}
       {/* <Raycaster /> */}
-      <CustomModelWithBlender />
+      {/* <CustomModelWithBlender /> */}
+      <RealisticRender />
     </>
   )
 }
