@@ -16,7 +16,25 @@ import particleTwelve from '../assets/particles/12.png'
 import particleThirteen from '../assets/particles/13.png'
 import GUI from 'lil-gui'
 
-const PARTICLE_TEXTURES = {
+const particleOptions = [
+   "Soft Dot",
+   "Ring",
+   "Cloud",
+   "Lens",
+   "Cross Glow",
+   "Crescent",
+   "Crosshair",
+   "Sharp Star",
+   "Sparkle",
+   "Heart",
+   "Star",
+   "Streak",
+   "Beam",
+] as const;
+
+type ParticleOption = (typeof particleOptions)[number];
+
+const PARTICLE_TEXTURES: Record<ParticleOption, string> = {
    'Soft Dot': particleOne,
    'Ring': particleTwo,
    'Cloud': particleThree,
@@ -39,24 +57,27 @@ const Particles = () => {
       // Lil GuiGui
       const gui = new GUI();
 
-      const particleConfiguration = {
-         particleSelector: 'Ring',
-         size: 0.05
-      }
+      const particleConfiguration: { particleSelector: ParticleOption; size: number } = {
+         particleSelector: "Soft Dot",
+         size: 0.5,
+      };
 
+      // GUI selector
       gui
-         .add(particleConfiguration, 'particleSelector', ['Soft Dot', 'Ring', 'Cloud', 'Lens', 'Cross Glow', 'Crescent', 'Crosshair', 'Sharp Star', 'Sparkle', 'Heart', 'Star', 'Streak', 'Beam'])
-         .name('Particle Selector')
-         .onChange((value) => {
-            particleTexture = textureLoader.load(PARTICLE_TEXTURES[value]);
+         .add(particleConfiguration, "particleSelector", particleOptions)
+         .name("Particle Selector")
+         .onChange((value: ParticleOption) => {
+            const particleTexture = textureLoader.load(PARTICLE_TEXTURES[value]);
             particlesMaterial.alphaMap = particleTexture;
             particlesMaterial.transparent = true;
          });
 
-      gui.add(particleConfiguration, 'size', 0, 1, 0.01).onChange((value) => {
-         particlesMaterial.size = value;
-      });
-
+      // GUI size
+      gui
+         .add(particleConfiguration, "size", 0, 1, 0.01)
+         .onChange((value: number) => {
+            particlesMaterial.size = value;
+         });
 
       // Scene
       const scene = new THREE.Scene();

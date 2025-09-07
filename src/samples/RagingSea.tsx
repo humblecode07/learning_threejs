@@ -1,15 +1,23 @@
 import GUI from "lil-gui";
 import * as THREE from "three";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { OrbitControls, Sky, Timer } from "three/examples/jsm/Addons.js";
 import waterVertex from "../shaders/raging-sea/vertex.glsl";
 import waterFragment from "../shaders/raging-sea/fragment.glsl";
+
+interface DebugObject {
+  depthColor: string;
+  surfaceColor: string;
+}
 
 const RagingSea = () => {
   useEffect(() => {
     // Lil GuiGui
     const gui = new GUI();
-    const debugObject = {};
+    const debugObject: DebugObject = {
+      depthColor: "#1f82b7",
+      surfaceColor: "#a3dcff",
+    };
 
     // SCENE
     const scene = new THREE.Scene();

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import * as THREE from "three";
 import { OrbitControls, Timer } from "three/examples/jsm/Addons.js";
 import galaxyVertexShader from "../shaders/animated-galaxy/vertex.glsl";
@@ -41,26 +41,39 @@ const AnimatedGalaxy = () => {
     orbitControls.enableDamping = true;
 
     // Galaxy
-    const parameters = {};
-    parameters.count = 100000;
-    parameters.size = 0.005;
-    parameters.radius = 5;
-    parameters.branches = 3;
-    parameters.spin = 1;
-    parameters.randomness = 0.5;
-    parameters.randomnessPower = 3;
-    parameters.insideColor = "#ffb8f5";
-    parameters.outsideColor = "#ffffff";
+    interface Parameters {
+      count: number;
+      size: number;
+      radius: number;
+      branches: number;
+      spin: number;
+      randomness: number;
+      randomnessPower: number;
+      insideColor: THREE.ColorRepresentation;
+      outsideColor: THREE.ColorRepresentation;
+    }
 
-    let particlesGeometry = null;
-    let particleMaterial = null;
-    let particles = null;
+    const parameters: Parameters = {
+      count: 100000,
+      size: 0.005,
+      radius: 5,
+      branches: 3,
+      spin: 1,
+      randomness: 0.5,
+      randomnessPower: 3,
+      insideColor: "#ffb8f5",
+      outsideColor: "#ffffff",
+    };
+
+    let particlesGeometry: THREE.BufferGeometry | null = null;
+    let particleMaterial: THREE.ShaderMaterial | null = null;
+    let particles: THREE.Points | null = null;
 
     const generateGalaxy = () => {
       // Destroy old galaxy
-      if (particles !== null) {
-        particlesGeometry.dispose();
-        particleMaterial.dispose();
+      if (particles) {
+        particlesGeometry?.dispose();
+        particleMaterial?.dispose();
         scene.remove(particles);
       }
 
@@ -81,7 +94,7 @@ const AnimatedGalaxy = () => {
         const radius = Math.random() * parameters.radius;
         const branchAngle =
           ((i % parameters.branches) / parameters.branches) * Math.PI * 2;
-        const spinAngle = radius * parameters.spin;
+        // const spinAngle = radius * parameters.spin;
 
         positions[i3] = Math.cos(branchAngle) * radius;
         positions[i3 + 1] = 0.0;
@@ -157,7 +170,7 @@ const AnimatedGalaxy = () => {
 
     generateGalaxy();
 
-    const axesHelper = new THREE.AxesHelper();
+    // const axesHelper = new THREE.AxesHelper();
     // scene.add(axesHelper);
 
     gui
@@ -186,6 +199,7 @@ const AnimatedGalaxy = () => {
       const elapsedTime = timer.getElapsed();
       orbitControls.update();
 
+      if (!particleMaterial) return;
       particleMaterial.uniforms.uTime.value = elapsedTime;
 
       renderer.render(scene, camera);

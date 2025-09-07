@@ -1,7 +1,7 @@
 import GUI from 'lil-gui';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import * as THREE from 'three'
-import { OrbitControls, RGBELoader } from 'three/examples/jsm/Addons.js';
+import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { DRACOLoader } from "three/examples/jsm/Addons.js";
 import tiledFloorARM from '../assets/floor/tiled_floor_001_arm_1k.jpg';

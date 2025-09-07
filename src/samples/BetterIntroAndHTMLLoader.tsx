@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader, OrbitControls, Timer } from "three/examples/jsm/Addons.js";
 import { gsap } from "gsap";
@@ -24,6 +24,7 @@ const BetterIntroAndHTMLLoader = () => {
       // Progress
       (itemUrl, itemsLoaded, itemsTotal) => {
         const progressRatio = itemsLoaded / itemsTotal;
+        console.log(itemUrl);
         setLoadingBar(progressRatio);
       }
     );
@@ -41,8 +42,7 @@ const BetterIntroAndHTMLLoader = () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap;
-    renderer.physicallyCorrectLights = true;
-    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1;
 
@@ -136,7 +136,6 @@ const BetterIntroAndHTMLLoader = () => {
 
     function animate() {
       timer.update();
-      const elapsedTime = timer.getElapsed();
       orbitControls.update();
 
       renderer.render(scene, camera);

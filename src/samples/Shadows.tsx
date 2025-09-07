@@ -1,8 +1,8 @@
 import GUI from 'lil-gui';
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import * as THREE from 'three';
 import { OrbitControls, Timer } from 'three/examples/jsm/Addons.js';
-import bakedShadow from '../assets/textures/bakedShadow.jpg';
+// import bakedShadow from '../assets/textures/bakedShadow.jpg';
 import simpleShadow from '../assets/textures/simpleShadow.jpg';
 
 const Shadows = () => {
@@ -106,7 +106,7 @@ const Shadows = () => {
 
       // Textures
       const textureLoader = new THREE.TextureLoader();
-      const bakedShadowTexture = textureLoader.load(bakedShadow);
+      // const bakedShadowTexture = textureLoader.load(bakedShadow);
       const simpleShadowTexture = textureLoader.load(simpleShadow);
 
       // Material

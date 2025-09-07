@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import * as THREE from 'three'
 import { FontLoader, OrbitControls, TextGeometry } from "three/examples/jsm/Addons.js";
-import matcapMercury from '../assets/matcaps/3.png'
-import matcapSunset from '../assets/matcaps/4.png'
-import matcapDawn from '../assets/matcaps/5.png'
+// import matcapMercury from '../assets/matcaps/3.png'
+// import matcapSunset from '../assets/matcaps/4.png'
+// import matcapDawn from '../assets/matcaps/5.png'
 import matcapLime from '../assets/matcaps/7.png'
 
 const ThreeDText = () => {
@@ -47,7 +47,7 @@ const ThreeDText = () => {
 
       // Fonts
       const fontLoader = new FontLoader();
-      const font = fontLoader.load(
+      fontLoader.load(
          '/fonts/helvetiker_regular.typeface.json',
          (font) => {
             const textGeometry = new TextGeometry(

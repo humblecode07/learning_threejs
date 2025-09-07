@@ -80,7 +80,7 @@ const Raycaster = () => {
     const gltfLoader = new GLTFLoader();
     gltfLoader.setDRACOLoader(dracoLoader);
 
-    let duck = null;
+    let duck: THREE.Object3D | null = null;
 
     gltfLoader.load(
       "models/Duck/glTF-Draco/Duck.gltf",
@@ -146,7 +146,7 @@ const Raycaster = () => {
     // Animate
     const timer = new Timer();
 
-    let currentIntersect = null;
+    let currentIntersect: THREE.Intersection | null = null;
 
     console.log(mesh1);
 
@@ -181,7 +181,15 @@ const Raycaster = () => {
       // let firstTime = true;
 
       for (const object of [mesh1, mesh2, mesh3]) {
-        object.material.color.set(0xff0000);
+        // Handle both single material and material array cases
+        const mesh = object as THREE.Mesh;
+        const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+
+        materials.forEach(material => {
+          if ('color' in material) {
+            (material as THREE.MeshBasicMaterial).color.set(0xff0000);
+          }
+        });
       }
 
       if (intersects.length) {
@@ -189,7 +197,8 @@ const Raycaster = () => {
           console.log("mouse enter");
         }
 
-        intersects[0].object.material.color.set(0x0000ff);
+        // Type assertion to access material property
+        ((intersects[0].object as THREE.Mesh).material as THREE.MeshBasicMaterial).color.set(0x0000ff);
         currentIntersect = intersects[0];
       } else {
         if (currentIntersect) {
@@ -199,7 +208,7 @@ const Raycaster = () => {
         currentIntersect = null;
       }
 
-      if (duck) {
+      if (duck && intersect) { // Add null check for intersect
         if (intersect.length) {
           duck.scale.setScalar(2);
         } else {

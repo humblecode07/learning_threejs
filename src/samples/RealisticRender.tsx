@@ -21,7 +21,10 @@ const RealisticRender = () => {
     // Lil Guigui
     const gui = new GUI();
 
-    const debugObject = {};
+    const debugObject: { envMapIntensity: number } = {
+      envMapIntensity: 1
+    };
+
 
     // Scene
     const scene = new THREE.Scene();

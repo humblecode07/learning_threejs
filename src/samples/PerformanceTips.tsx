@@ -7,7 +7,7 @@ import Stats from "three/examples/jsm/libs/stats.module.js";
 const PerformanceTips = () => {
   useEffect(() => {
     // Lil Guigui
-    const gui = new GUI();
+    // const gui = new GUI();
 
     // Scene
     const scene = new THREE.Scene();

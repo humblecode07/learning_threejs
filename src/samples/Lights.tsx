@@ -32,7 +32,7 @@ const Lights = () => {
          camera.updateProjectionMatrix();
 
          renderer.setSize(window.innerWidth, window.innerHeight);
-         renderer.setPixelRatio(Math.min(window.devicePixelRatio), 2);
+         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       });
 
       // Lighting
@@ -86,7 +86,7 @@ const Lights = () => {
       const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.2);
       scene.add(pointLightHelper);
 
-      const spotLightHelper = new THREE.SpotLightHelper(spotLight, 0,2);
+      const spotLightHelper = new THREE.SpotLightHelper(spotLight, 0.2);
       scene.add(spotLightHelper);
 
       const rectAreaLightHelper = new RectAreaLightHelper(rectAreaLight);

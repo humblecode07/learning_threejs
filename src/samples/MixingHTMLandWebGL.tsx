@@ -1,5 +1,5 @@
 import gsap from "gsap";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader, OrbitControls, Timer } from "three/examples/jsm/Addons.js";
 
@@ -51,6 +51,7 @@ const MixingHTMLandWebGL = () => {
       // Progress
       (itemUrl, itemsLoaded, itemsTotal) => {
         const progressRatio = itemsLoaded / itemsTotal;
+        console.log(itemUrl);
         setLoadingBar(progressRatio);
       }
     );
@@ -69,8 +70,7 @@ const MixingHTMLandWebGL = () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap;
-    renderer.physicallyCorrectLights = true;
-    renderer.outputEncoding = THREE.SRGBColorSpace;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1;
 
@@ -144,7 +144,7 @@ const MixingHTMLandWebGL = () => {
       "environmentMaps/5/nz.jpg",
     ]);
 
-    environmentMap.colrSpace = THREE.SRGBColorSpace;
+    environmentMap.colorSpace = THREE.SRGBColorSpace;
     scene.background = environmentMap;
     scene.environment = environmentMap;
 
@@ -174,6 +174,17 @@ const MixingHTMLandWebGL = () => {
       },
     ];
 
+    const divKeys = ["divOne", "divTwo", "divThree"] as const;
+    type DivKey = typeof divKeys[number]; // "divOne" | "divTwo" | "divThree"
+
+    type DivState = {
+      visible: boolean;
+      translateX: string;
+      translateY: string;
+    };
+
+    type Divs = Record<DivKey, DivState>;
+
     // Animate
     const timer = new Timer();
 
@@ -187,18 +198,18 @@ const MixingHTMLandWebGL = () => {
         const screenPosition = point.position.clone();
         screenPosition.project(camera);
 
-        raycaster.setFromCamera(screenPosition, camera);
+        const screenPosition2D = new THREE.Vector2(screenPosition.x, screenPosition.y);
+        raycaster.setFromCamera(screenPosition2D, camera);
         const intersects = raycaster.intersectObjects(scene.children, true);
 
-        let currentlyVisible = false;
-
-        const divKeys = ["divOne", "divTwo", "divThree"];
+        const divKeys = ["divOne", "divTwo", "divThree"] as const;
+        const currentDivKey = divKeys[index];
 
         if (intersects.length === 0) {
           setDivs((prevDivs) => ({
             ...prevDivs,
-            [divKeys[index]]: {
-              ...prevDivs[divKeys[index]],
+            [currentDivKey]: {
+              ...(prevDivs[currentDivKey] || {}),
               visible: true,
             },
           }));
@@ -209,16 +220,16 @@ const MixingHTMLandWebGL = () => {
           if (intersectionDistance < pointDistance) {
             setDivs((prevDivs) => ({
               ...prevDivs,
-              [divKeys[index]]: {
-                ...prevDivs[divKeys[index]],
+              [currentDivKey]: {
+                ...(prevDivs[currentDivKey] || {}),
                 visible: false,
               },
             }));
           } else {
             setDivs((prevDivs) => ({
               ...prevDivs,
-              [divKeys[index]]: {
-                ...prevDivs[divKeys[index]],
+              [currentDivKey]: {
+                ...(prevDivs[currentDivKey] || {}),
                 visible: true,
               },
             }));
@@ -230,8 +241,8 @@ const MixingHTMLandWebGL = () => {
 
         setDivs((prevDivs) => ({
           ...prevDivs,
-          [divKeys[index]]: {
-            ...prevDivs[divKeys[index]],
+          [currentDivKey]: {
+            ...(prevDivs[currentDivKey] || {}),
             translateX: `${screenX}px`,
             translateY: `${screenY}px`,
           },
@@ -257,14 +268,12 @@ const MixingHTMLandWebGL = () => {
           top: "50%",
           width: "100%",
           height: "2px",
-          transform: `${
-            isLoadingBarEnded ? "scaleX(0)" : `scaleX(${loadingBar})`
-          }`,
+          transform: `${isLoadingBarEnded ? "scaleX(0)" : `scaleX(${loadingBar})`
+            }`,
           background: "#ffffff",
           transformOrigin: `top ${isLoadingBarEnded ? "right" : "left"}`,
-          transition: `transform ${
-            isLoadingBarEnded ? "1.3s ease-in-out" : "0.5s"
-          }`,
+          transition: `transform ${isLoadingBarEnded ? "1.3s ease-in-out" : "0.5s"
+            }`,
           willChange: "transform",
         }}
       ></div>
@@ -296,13 +305,12 @@ const MixingHTMLandWebGL = () => {
               fontWeight: "100",
               fontSize: ".875rem",
               cursor: "help",
-              transform: `${
-                !isLoadingBarEnded
-                  ? "scale(0, 0)"
-                  : value.visible
+              transform: `${!isLoadingBarEnded
+                ? "scale(0, 0)"
+                : value.visible
                   ? "scale(1, 1)"
                   : "scale(0, 0)"
-              } `,
+                } `,
               transition: "transform 1.3s",
             }}
             onMouseEnter={() => (value.opacity = 1)}

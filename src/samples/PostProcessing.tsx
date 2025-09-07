@@ -1,6 +1,6 @@
 import GUI from "lil-gui";
 import * as THREE from "three";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import {
   DRACOLoader,
   GLTFLoader,
@@ -73,10 +73,12 @@ const PostProcessing = () => {
     rgbShiftPass.enabled = false;
     effectComposer.addPass(rgbShiftPass);
 
-    const unrealBloomPass = new UnrealBloomPass();
-    unrealBloomPass.strength = 0.3;
-    unrealBloomPass.radius = 1;
-    unrealBloomPass.threshold = 0.6;
+    const unrealBloomPass = new UnrealBloomPass(
+      new THREE.Vector2(window.innerWidth, window.innerHeight), // resolution
+      0.3,  // strength
+      1.0,  // radius
+      0.6   // threshold
+    );
     effectComposer.addPass(unrealBloomPass);
 
     const gammaCorrectionPass = new ShaderPass(GammaCorrectionShader);
@@ -158,8 +160,9 @@ const PostProcessing = () => {
     effectComposer.addPass(displacementPass);
 
     // SMAA Pass
+
     if (renderer.getPixelRatio() === 1 && !renderer.capabilities.isWebGL2) {
-      const smaaPass = new SMAAPass();
+      const smaaPass = new SMAAPass(window.innerWidth, window.innerHeight);
       effectComposer.addPass(smaaPass);
     }
 
@@ -263,7 +266,7 @@ const PostProcessing = () => {
 
     function animate() {
       timer.update();
-      const elapsedTime = timer.getElapsed();
+      // const elapsedTime = timer.getElapsed();
       orbitControls.update();
 
       // displacementPass.material.uniforms.uTime.value = elapsedTime;

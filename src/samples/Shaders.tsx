@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import * as THREE from "three";
 import { OrbitControls, Timer } from "three/examples/jsm/Addons.js";
 import testVertexShader from "../shaders/test/vertex.glsl";

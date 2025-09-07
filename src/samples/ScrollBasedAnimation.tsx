@@ -6,10 +6,12 @@ import { Timer } from 'three/examples/jsm/Addons.js';
 import gsap from 'gsap';
 
 const ScrollBasedAnimation = () => {
-   const canvasRef = useRef(null);
+   const canvasRef = useRef<HTMLDivElement | null>(null);
 
    useEffect(() => {
       const currentCanvasRef = canvasRef.current;
+      if (!currentCanvasRef) return;
+
       let aspectRatio = window.innerWidth / window.innerHeight;
 
       // Lil GuiGui
@@ -41,7 +43,7 @@ const ScrollBasedAnimation = () => {
          camera.updateProjectionMatrix();
 
          renderer.setSize(window.innerWidth, window.innerHeight);
-         renderer.setPixelRatio(Math.min(window.devicePixelRatio), 2);
+         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       });
 
       // Group
@@ -149,14 +151,15 @@ const ScrollBasedAnimation = () => {
       })
 
       // Cursor
-      const cursor = {};
-      cursor.x = 0;
-      cursor.y = 0;
+      const cursor = {
+         x: 0,
+         y: 0,
+      };
 
-      window.addEventListener('mousemove', (e) => {
+      window.addEventListener("mousemove", (e) => {
          cursor.x = e.clientX / window.innerWidth - 0.5;
-         cursor.y = e.clientY / window.innerHeight - 0.5;
-      })
+         cursor.y = -(e.clientY / window.innerHeight - 0.5); // invert Y if needed
+      });
 
       // Animate
       const timer = new Timer();
@@ -184,7 +187,7 @@ const ScrollBasedAnimation = () => {
          }
 
          // Spin
-         
+
 
          renderer.render(scene, camera);
       }

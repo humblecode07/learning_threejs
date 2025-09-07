@@ -54,16 +54,15 @@ const GalaxyGenerator = () => {
          outsideColor: '#1b3984'
       }
 
-      let particlesGeometry = null;
-      let particleMaterial = null;
-      let particles = null;
-
+      let particlesGeometry: THREE.BufferGeometry | null = null;
+      let particleMaterial: THREE.PointsMaterial | null = null;
+      let particles: THREE.Points | null = null;
 
       const generateGalaxy = () => {
          // Destroy old galaxy
-         if (particles !== null) {
-            particlesGeometry.dispose();
-            particleMaterial.dispose();
+         if (particles) {
+            particlesGeometry?.dispose();
+            particleMaterial?.dispose();
             scene.remove(particles);
          }
 
@@ -102,7 +101,7 @@ const GalaxyGenerator = () => {
 
          particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
          particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-         
+
 
          // Material
          particleMaterial = new THREE.PointsMaterial({
@@ -121,19 +120,19 @@ const GalaxyGenerator = () => {
       generateGalaxy();
 
       gui.add(parameters, 'count', 100, 1000000, 100).onFinishChange(generateGalaxy);
-      gui.add(parameters, 'size', 0.001, 0.1, 0.001).onFinishChange(generateGalaxy);  
-      gui.add(parameters, 'radius', 0.01, 20, 0.01).onFinishChange(generateGalaxy);  
-      gui.add(parameters, 'branches', 2, 20, 1).onFinishChange(generateGalaxy);  
-      gui.add(parameters, 'spin', -5, 5, 0.001).onFinishChange(generateGalaxy);  
-      gui.add(parameters, 'randomness', 0, 2, 0.001).onFinishChange(generateGalaxy);  
-      gui.addColor(parameters, 'insideColor').onFinishChange(generateGalaxy);  
-      gui.addColor(parameters, 'outsideColor').onFinishChange(generateGalaxy);  
+      gui.add(parameters, 'size', 0.001, 0.1, 0.001).onFinishChange(generateGalaxy);
+      gui.add(parameters, 'radius', 0.01, 20, 0.01).onFinishChange(generateGalaxy);
+      gui.add(parameters, 'branches', 2, 20, 1).onFinishChange(generateGalaxy);
+      gui.add(parameters, 'spin', -5, 5, 0.001).onFinishChange(generateGalaxy);
+      gui.add(parameters, 'randomness', 0, 2, 0.001).onFinishChange(generateGalaxy);
+      gui.addColor(parameters, 'insideColor').onFinishChange(generateGalaxy);
+      gui.addColor(parameters, 'outsideColor').onFinishChange(generateGalaxy);
 
       const axesHelper = new THREE.AxesHelper();
       scene.add(axesHelper);
 
       // Animate
-      function animate () {
+      function animate() {
          orbitControls.update();
 
          renderer.render(scene, camera)

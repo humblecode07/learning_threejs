@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import * as THREE from "three";
 import { OrbitControls, RGBELoader, Timer } from "three/examples/jsm/Addons.js";
-import doorDiff from "../assets/door/door_base_color.webp";
-import doorAlpha from "../assets/door/Door_Wood_001_opacity.webp";
-import doorAO from "../assets/door/door_ambient_occlusion.webp";
-import doorHght from "../assets/door/door_height.webp";
-import doorNor from "../assets/door/door_normal.webp";
-import doorMetal from "../assets/door/door_metallic.webp";
-import doorRough from "../assets/door/door_roughness.webp";
-import brownMatcap from "../assets/matcaps/1.png";
+// import doorDiff from "../assets/door/door_base_color.webp";
+// import doorAlpha from "../assets/door/Door_Wood_001_opacity.webp";
+// import doorAO from "../assets/door/door_ambient_occlusion.webp";
+// import doorHght from "../assets/door/door_height.webp";
+// import doorNor from "../assets/door/door_normal.webp";
+// import doorMetal from "../assets/door/door_metallic.webp";
+// import doorRough from "../assets/door/door_roughness.webp";
+// import brownMatcap from "../assets/matcaps/1.png";
 import gradient from "../assets/gradients/3.jpg";
 import environment from "../assets/environmentMap/2k.hdr";
 import GUI from "lil-gui";
@@ -67,14 +67,14 @@ const Materials = () => {
     // Textures
     const textureLoader = new THREE.TextureLoader();
 
-    const doorColorTexture = textureLoader.load(doorDiff);
-    const doorAlphaTexture = textureLoader.load(doorAlpha);
-    const doorAOTexture = textureLoader.load(doorAO);
-    const doorHeightTexture = textureLoader.load(doorHght);
-    const doorNormalTexture = textureLoader.load(doorNor);
-    const doorMetalnessTexture = textureLoader.load(doorMetal);
-    const doorRoughnessTexture = textureLoader.load(doorRough);
-    const matcapTexture = textureLoader.load(brownMatcap);
+    // const doorColorTexture = textureLoader.load(doorDiff);
+    // const doorAlphaTexture = textureLoader.load(doorAlpha);
+    // const doorAOTexture = textureLoader.load(doorAO);
+    // const doorHeightTexture = textureLoader.load(doorHght);
+    // const doorNormalTexture = textureLoader.load(doorNor);
+    // const doorMetalnessTexture = textureLoader.load(doorMetal);
+    // const doorRoughnessTexture = textureLoader.load(doorRough);
+    // const matcapTexture = textureLoader.load(brownMatcap);
     const gradientTexture = textureLoader.load(gradient);
 
     gradientTexture.minFilter = THREE.NearestFilter;

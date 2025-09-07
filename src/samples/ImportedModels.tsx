@@ -69,7 +69,7 @@ const ImportedModels = () => {
       const gltfLoader = new GLTFLoader();
       gltfLoader.setDRACOLoader(dracoLoader);
 
-      let mixer = null;
+      let mixer: THREE.AnimationMixer | null = null;
 
       gltfLoader.load(
          'models/Fox/glTF/Fox.gltf',

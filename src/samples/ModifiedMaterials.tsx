@@ -19,7 +19,7 @@ const ModifiedMaterials = () => {
     const textureLoader = new THREE.TextureLoader();
 
     // Lil Guigui
-    const gui = new GUI();
+    // const gui = new GUI();
 
     // Scene
     const scene = new THREE.Scene();
@@ -32,8 +32,7 @@ const ModifiedMaterials = () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap;
-    renderer.physicallyCorrectLights = true;
-    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.outputColorSpace = THREE.SRGBColorSpace;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1;
 
@@ -107,7 +106,7 @@ const ModifiedMaterials = () => {
 
     // Textures
     const mapTexture = textureLoader.load("models/LeePerrySmith/color.jpg");
-    mapTexture.encoding = THREE.SRGBColorSpace;
+    mapTexture.colorSpace = THREE.SRGBColorSpace;
 
     const normalTexture = textureLoader.load("models/LeePerrySmith/normal.jpg");
 
@@ -206,8 +205,11 @@ const ModifiedMaterials = () => {
       gltf.scene.position.set(0, 0, 0);
       gltf.scene.rotation.y = Math.PI * 0.5;
 
-      gltf.scene.children[0].material = material;
-      gltf.scene.children[0].customDepthMaterial = depthMaterial;
+      const mesh = gltf.scene.children[0] as THREE.Mesh;
+      if (mesh.isMesh) {
+        mesh.material = material;
+        (mesh as any).customDepthMaterial = depthMaterial; // not standard in TS
+      }
 
       scene.add(gltf.scene);
 

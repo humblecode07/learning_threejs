@@ -1,5 +1,5 @@
 import GUI from "lil-gui";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import * as THREE from "three";
 import {
   DRACOLoader,
@@ -30,9 +30,16 @@ const Portal = () => {
     const gui = new GUI();
 
     // Debug
-    const debugObject = {};
+    const debugObject: {
+      clearColor: THREE.ColorRepresentation,
+      portalColorStart: THREE.ColorRepresentation;
+      portalColorEnd: THREE.ColorRepresentation;
+    } = {
+      clearColor: "#1c1c1c",
+      portalColorStart: "#000000",
+      portalColorEnd: "#e51eff",
+    };
 
-    debugObject.clearColor = "#1c1c1c";
     gui.addColor(debugObject, "clearColor").onChange(() => {
       renderer.setClearColor(debugObject.clearColor);
     });
@@ -143,18 +150,11 @@ const Portal = () => {
     const poleLightMaterial = new THREE.MeshBasicMaterial({ color: 0xffffe5 });
 
     // Portal Light Material
-    debugObject.portalColorStart = "#000000";
-    debugObject.portalColorEnd = "#e51eff";
-
     gui.addColor(debugObject, "portalColorStart").onChange(() => {
-      portalLightMaterial.uniforms.uColorStart.value.set(
-        debugObject.portalColorStart
-      );
+      portalLightMaterial.uniforms.uColorStart.value.set(debugObject.portalColorStart);
     });
     gui.addColor(debugObject, "portalColorEnd").onChange(() => {
-      portalLightMaterial.uniforms.uColorEnd.value.set(
-        debugObject.portalColorEnd
-      );
+      portalLightMaterial.uniforms.uColorEnd.value.set(debugObject.portalColorEnd);
     });
 
     const portalLightMaterial = new THREE.ShaderMaterial({
@@ -176,24 +176,22 @@ const Portal = () => {
     // Models
     gltfLoader.load("portal.glb", (gltf) => {
       const bakedMesh = gltf.scene.children.find(
-        (child) => child.name === "baked"
+        (child): child is THREE.Mesh => child.name === "baked"
       );
-
       const portalLightMesh = gltf.scene.children.find(
-        (child) => child.name === "Circle"
+        (child): child is THREE.Mesh => child.name === "Circle"
       );
-
       const poleLightAMesh = gltf.scene.children.find(
-        (child) => child.name === "Cube014"
+        (child): child is THREE.Mesh => child.name === "Cube014"
       );
       const poleLightBMesh = gltf.scene.children.find(
-        (child) => child.name === "Cube049"
+        (child): child is THREE.Mesh => child.name === "Cube049"
       );
 
-      portalLightMesh.material = portalLightMaterial;
-      poleLightAMesh.material = poleLightMaterial;
-      poleLightBMesh.material = poleLightMaterial;
-      bakedMesh.material = bakedMaterial;
+      if (bakedMesh) bakedMesh.material = bakedMaterial;
+      if (portalLightMesh) portalLightMesh.material = portalLightMaterial;
+      if (poleLightAMesh) poleLightAMesh.material = poleLightMaterial;
+      if (poleLightBMesh) poleLightBMesh.material = poleLightMaterial;
 
       scene.add(gltf.scene);
     });

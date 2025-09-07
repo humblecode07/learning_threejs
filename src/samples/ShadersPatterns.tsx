@@ -1,5 +1,5 @@
 import GUI from "lil-gui";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import * as THREE from "three";
 import { OrbitControls, Timer } from "three/examples/jsm/Addons.js";
 import testVertexShader from "../shaders/shaders-patterns/vertex.glsl";
@@ -67,6 +67,7 @@ const ShadersPatterns = () => {
     renderer.setAnimationLoop(animate);
 
     return () => {
+      gui.destroy();
       renderer.dispose();
       document.body.removeChild(renderer.domElement);
     };
