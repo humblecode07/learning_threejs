@@ -174,17 +174,6 @@ const MixingHTMLandWebGL = () => {
       },
     ];
 
-    const divKeys = ["divOne", "divTwo", "divThree"] as const;
-    type DivKey = typeof divKeys[number]; // "divOne" | "divTwo" | "divThree"
-
-    type DivState = {
-      visible: boolean;
-      translateX: string;
-      translateY: string;
-    };
-
-    type Divs = Record<DivKey, DivState>;
-
     // Animate
     const timer = new Timer();
 

@@ -1,7 +1,7 @@
 import GUI from "lil-gui";
 import * as THREE from 'three'
 import { useEffect } from "react";
-import { OrbitControls, Timer } from "three/examples/jsm/Addons.js";
+import { OrbitControls } from "three/examples/jsm/Addons.js";
 
 const GalaxyGenerator = () => {
    useEffect(() => {

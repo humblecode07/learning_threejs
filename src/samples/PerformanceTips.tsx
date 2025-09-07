@@ -1,4 +1,4 @@
-import GUI from "lil-gui";
+// import GUI from "lil-gui";
 import { useEffect } from "react";
 import * as THREE from "three";
 import { OrbitControls, Timer } from "three/examples/jsm/Addons.js";

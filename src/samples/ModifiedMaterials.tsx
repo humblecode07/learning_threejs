@@ -1,4 +1,4 @@
-import GUI from "lil-gui";
+// import GUI from "lil-gui";
 import * as THREE from "three";
 import { useEffect } from "react";
 import {

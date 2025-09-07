@@ -5,6 +5,13 @@ import { OrbitControls, Timer } from 'three/examples/jsm/Addons.js';
 import * as CANNON from 'cannon-es'
 import hit from '../assets/sounds/hit.mp3'
 
+interface PhysicsObject {
+   mesh: THREE.Mesh;
+   body: {
+      removeEventListener: (event: string, callback: (...args: any[]) => void) => void;
+   } & any; // allows other physics body methods like world.removeBody()
+}
+
 const Physics = () => {
    useEffect(() => {
       let aspectRatio = window.innerWidth / window.innerHeight;
@@ -14,15 +21,27 @@ const Physics = () => {
 
       const debugObject = {
          createSphere: () => {
-            createSphere(Math.random() * 0.5, { x: (Math.random() - 0.5) * 5, y: Math.random() * 5, z: (Math.random() - 0.5) * 5 })
+            createSphere(
+               Math.random() * 0.5,
+               new THREE.Vector3(
+                  (Math.random() - 0.5) * 5,
+                  Math.random() * 5,
+                  (Math.random() - 0.5) * 5
+               )
+            );
          },
          createBox: () => {
             createBox(
                Math.random(),
                Math.random(),
                Math.random(),
-               { x: (Math.random() - 0.5) * 5, y: Math.random() * 5, z: (Math.random() - 0.5) * 5 }
-            )
+               new THREE.Vector3(
+                  (Math.random() - 0.5) * 5,
+                  Math.random() * 5,
+                  (Math.random() - 0.5) * 5
+               )
+            );
+
          },
          reset: () => {
             for (const object of objectsToUpdate) {
@@ -31,7 +50,7 @@ const Physics = () => {
                world.removeBody(object.body);
 
                // Remove mesh
-               scene.remove(object.mesh); 
+               scene.remove(object.mesh);
             }
 
             objectsToUpdate.splice(0, objectsToUpdate.length)
@@ -85,7 +104,7 @@ const Physics = () => {
 
       const hitSound = new Audio(hit);
 
-      const playHitSound = (collision) => {
+      const playHitSound = (collision: any) => {
          const impactStrength = collision.contact.getImpactVelocityAlongNormal();
 
          if (impactStrength > 1.5) {
@@ -165,7 +184,7 @@ const Physics = () => {
       scene.add(ambientLight, directionalLight, directionalLightCameraHelper, axesHelper);
 
       // Utils
-      const objectsToUpdate = [];
+      const objectsToUpdate: PhysicsObject[] = [];
 
       const sphereGeometry = new THREE.SphereGeometry(1, 20, 20);
       const sphereMaterial = new THREE.MeshStandardMaterial({
@@ -173,7 +192,7 @@ const Physics = () => {
          roughness: 0.4
       })
 
-      const createSphere = (radius, position) => {
+      const createSphere = (radius: number, position: THREE.Vector3): void => {
          const mesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
          mesh.scale.setScalar(radius);
          mesh.castShadow = true;
@@ -188,7 +207,8 @@ const Physics = () => {
             shape,
             material: defaultMaterial
          })
-         body.position.copy(position);
+         // body.position.copy(position);
+         body.position = new CANNON.Vec3(position.x, position.y, position.z);
 
          setTimeout(() => {
             body.addEventListener('collide', playHitSound);
@@ -209,7 +229,12 @@ const Physics = () => {
          roughness: 0.4
       });
 
-      const createBox = (width, height, depth, position) => {
+      const createBox = (
+         width: number,
+         height: number,
+         depth: number,
+         position: THREE.Vector3
+      ): void => {
          const mesh = new THREE.Mesh(boxGeometry, boxMaterial);
          mesh.scale.set(width, height, depth);
          mesh.castShadow = true;
@@ -224,7 +249,9 @@ const Physics = () => {
             shape,
             material: defaultMaterial
          })
-         body.position.copy(position);
+         // body.position.copy(position);
+         body.position = new CANNON.Vec3(position.x, position.y, position.z);
+
 
          setTimeout(() => {
             body.addEventListener('collide', playHitSound);
