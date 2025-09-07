@@ -74,8 +74,8 @@ const Portal = () => {
     // Orbit Control
     const orbitControls = new OrbitControls(camera, renderer.domElement);
     orbitControls.enableDamping = true;
-    // orbitControls.autoRotate = true;
-    // controls.autoRotateSpeed = 2;
+    orbitControls.autoRotate = true;
+    orbitControls.autoRotateSpeed = 2;
 
     /* Fireflies */
 
