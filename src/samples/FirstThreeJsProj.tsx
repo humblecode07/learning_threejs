@@ -1,36 +1,36 @@
 // import React from 'react'
-import { useEffect } from 'react'
-import * as THREE from 'three'
+import { useEffect } from "react";
+import * as THREE from "three";
 // import gsap from 'gsap';
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
-import { Sky } from 'three/addons/objects/Sky.js'
-import { Timer } from 'three/addons/misc/Timer.js'
-import GUI from 'lil-gui'
-import alpha from '../assets/floor/alpha.jpg'
-import rocksGroundCol from '../assets/floor/rocks_ground_02_col_2k.webp';
-import rocksGroundARM from '../assets/floor/rocks_ground_02_arm_2k.webp';
-import rocksGroundNor from '../assets/floor/rocks_ground_02_nor_gl_2k.webp';
-import rocksGroundHght from '../assets/floor/rocks_ground_02_height_2k.webp';
-import wallDiff from '../assets/wall/rock_wall_08_diff_1k.webp';
-import wallARM from '../assets/wall/rock_wall_08_arm_1k.webp';
-import wallNor from '../assets/wall/rock_wall_08_nor_gl_1k.webp';
-import wallDisplacement from '../assets/wall/rock_wall_08_disp_1k.webp';
-import roofDiff from '../assets/roof/roof_09_diff_1k.webp';
-import roofARM from '../assets/roof/roof_09_arm_1k.webp';
-import roofNor from '../assets/roof/roof_09_nor_gl_1k.webp';
-import bushDiff from '../assets/bush/leaves_forest_ground_diff_1k.webp';
-import bushARM from '../assets/bush/leaves_forest_ground_arm_1k.webp';
-import bushNor from '../assets/bush/leaves_forest_ground_nor_gl_1k.webp';
-import gravesDiff from '../assets/grave/plastered_stone_wall_diff_1k.webp';
-import gravesARM from '../assets/grave/plastered_stone_wall_arm_1k.webp';
-import gravesNor from '../assets/grave/plastered_stone_wall_nor_gl_1k.webp';
-import doorDiff from '../assets/door/door_base_color.webp';
-import doorAlpha from '../assets/door/Door_Wood_001_opacity.webp';
-import doorAO from '../assets/door/door_ambient_occlusion.webp';
-import doorHght from '../assets/door/door_height.webp';
-import doorNor from '../assets/door/door_normal.webp';
-import doorMetal from '../assets/door/door_metallic.webp';
-import doorRough from '../assets/door/door_roughness.webp';
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { Sky } from "three/addons/objects/Sky.js";
+import { Timer } from "three/addons/misc/Timer.js";
+import GUI from "lil-gui";
+import alpha from "../assets/floor/alpha.jpg";
+import rocksGroundCol from "../assets/floor/rocks_ground_02_col_2k.webp";
+import rocksGroundARM from "../assets/floor/rocks_ground_02_arm_2k.webp";
+import rocksGroundNor from "../assets/floor/rocks_ground_02_nor_gl_2k.webp";
+import rocksGroundHght from "../assets/floor/rocks_ground_02_height_2k.webp";
+import wallDiff from "../assets/wall/rock_wall_08_diff_1k.webp";
+import wallARM from "../assets/wall/rock_wall_08_arm_1k.webp";
+import wallNor from "../assets/wall/rock_wall_08_nor_gl_1k.webp";
+import wallDisplacement from "../assets/wall/rock_wall_08_disp_1k.webp";
+import roofDiff from "../assets/roof/roof_09_diff_1k.webp";
+import roofARM from "../assets/roof/roof_09_arm_1k.webp";
+import roofNor from "../assets/roof/roof_09_nor_gl_1k.webp";
+import bushDiff from "../assets/bush/leaves_forest_ground_diff_1k.webp";
+import bushARM from "../assets/bush/leaves_forest_ground_arm_1k.webp";
+import bushNor from "../assets/bush/leaves_forest_ground_nor_gl_1k.webp";
+import gravesDiff from "../assets/grave/plastered_stone_wall_diff_1k.webp";
+import gravesARM from "../assets/grave/plastered_stone_wall_arm_1k.webp";
+import gravesNor from "../assets/grave/plastered_stone_wall_nor_gl_1k.webp";
+import doorDiff from "../assets/door/door_base_color.webp";
+import doorAlpha from "../assets/door/Door_Wood_001_opacity.webp";
+import doorAO from "../assets/door/door_ambient_occlusion.webp";
+import doorHght from "../assets/door/door_height.webp";
+import doorNor from "../assets/door/door_normal.webp";
+import doorMetal from "../assets/door/door_metallic.webp";
+import doorRough from "../assets/door/door_roughness.webp";
 
 const FirstThreeJsProj = () => {
   useEffect(() => {
@@ -39,7 +39,7 @@ const FirstThreeJsProj = () => {
 
     // SCENE
     const scene = new THREE.Scene();
-    let aspectRatio = (window.innerWidth / window.innerHeight);
+    let aspectRatio = window.innerWidth / window.innerHeight;
 
     // RENDERER
     const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -51,19 +51,19 @@ const FirstThreeJsProj = () => {
 
     document.body.appendChild(renderer.domElement);
 
-    window.addEventListener('resize', () => {
-      aspectRatio = (window.innerWidth / window.innerHeight);
+    window.addEventListener("resize", () => {
+      aspectRatio = window.innerWidth / window.innerHeight;
       camera.aspect = aspectRatio;
       camera.updateProjectionMatrix();
 
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    })
+    });
 
-    window.addEventListener('dblclick', () => {
+    window.addEventListener("dblclick", () => {
       if (!document.fullscreenElement) renderer.domElement.requestFullscreen();
       else document.exitFullscreen();
-    })
+    });
 
     // CAMERA
     const camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
@@ -78,8 +78,8 @@ const FirstThreeJsProj = () => {
 
     // LIGHTING
 
-    const light = new THREE.DirectionalLight('#426C8A', 1);
-    const ambientLight = new THREE.AmbientLight('#426C8A', 0.275);
+    const light = new THREE.DirectionalLight("#426C8A", 1);
+    const ambientLight = new THREE.AmbientLight("#426C8A", 0.275);
 
     light.position.set(3, 2, -8);
 
@@ -87,13 +87,13 @@ const FirstThreeJsProj = () => {
     scene.add(ambientLight);
 
     // Door Light
-    const doorLight = new THREE.PointLight('#ff7d46', 5);
-    doorLight.position.set(0, 2.2, 2.5)
+    const doorLight = new THREE.PointLight("#ff7d46", 5);
+    doorLight.position.set(0, 2.2, 2.5);
 
     // Ghosts ~wooooo....
-    const ghost1 = new THREE.PointLight('#8800ff', 6);
-    const ghost2 = new THREE.PointLight('#ff0088', 6);
-    const ghost3 = new THREE.PointLight('#ff0000', 6);
+    const ghost1 = new THREE.PointLight("#8800ff", 6);
+    const ghost2 = new THREE.PointLight("#ff0088", 6);
+    const ghost3 = new THREE.PointLight("#ff0000", 6);
 
     scene.add(ghost1, ghost2, ghost3);
 
@@ -101,20 +101,20 @@ const FirstThreeJsProj = () => {
     const loadingManager = new THREE.LoadingManager();
 
     loadingManager.onStart = () => {
-      console.log('onStart')
-    }
+      console.log("onStart");
+    };
 
     loadingManager.onLoad = () => {
-      console.log('onLoad')
-    }
+      console.log("onLoad");
+    };
 
     loadingManager.onProgress = () => {
-      console.log('onProgress')
-    }
+      console.log("onProgress");
+    };
 
     loadingManager.onError = () => {
-      console.log('onError')
-    }
+      console.log("onError");
+    };
 
     const textureLoader = new THREE.TextureLoader(loadingManager);
 
@@ -161,9 +161,9 @@ const FirstThreeJsProj = () => {
     roofARMTexture.repeat.set(6, 1);
     roofNormalTexture.repeat.set(6, 1);
 
-    roofColorTexture.wrapS = THREE.RepeatWrapping
-    roofARMTexture.wrapS = THREE.RepeatWrapping
-    roofNormalTexture.wrapS = THREE.RepeatWrapping
+    roofColorTexture.wrapS = THREE.RepeatWrapping;
+    roofARMTexture.wrapS = THREE.RepeatWrapping;
+    roofNormalTexture.wrapS = THREE.RepeatWrapping;
 
     // Bush Textures
     const bushColorTexture = textureLoader.load(bushDiff);
@@ -176,9 +176,9 @@ const FirstThreeJsProj = () => {
     bushARMTexture.repeat.set(2, 1);
     bushNormalTexture.repeat.set(2, 1);
 
-    bushColorTexture.wrapS = THREE.RepeatWrapping
-    bushARMTexture.wrapS = THREE.RepeatWrapping
-    bushNormalTexture.wrapS = THREE.RepeatWrapping
+    bushColorTexture.wrapS = THREE.RepeatWrapping;
+    bushARMTexture.wrapS = THREE.RepeatWrapping;
+    bushNormalTexture.wrapS = THREE.RepeatWrapping;
 
     // Grave Textures
     const graveColorTexture = textureLoader.load(gravesDiff);
@@ -234,7 +234,7 @@ const FirstThreeJsProj = () => {
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(20, 20, 100, 100),
       new THREE.MeshStandardMaterial({
-        color: 0x3B3B3B,
+        color: 0x3b3b3b,
         alphaMap: floorAlphaTexture,
         transparent: true,
         map: floorColorTexture,
@@ -244,16 +244,26 @@ const FirstThreeJsProj = () => {
         normalMap: floorNormalTexture,
         displacementMap: floorDisplacementTexture,
         displacementScale: 0.3,
-        displacementBias: -0.0609999999999999
+        displacementBias: -0.0609999999999999,
       })
     );
 
-    floor.rotation.x = - Math.PI / 2;
+    floor.rotation.x = -Math.PI / 2;
 
-    // Floor GUI 
+    // Floor GUI
 
-    gui.add(floor.material, 'displacementScale').min(0).max(1).step(0.001).name('floorDisplacementScale');
-    gui.add(floor.material, 'displacementBias').min(-1).max(1).step(0.001).name('floorDisplacementBias');
+    gui
+      .add(floor.material, "displacementScale")
+      .min(0)
+      .max(1)
+      .step(0.001)
+      .name("floorDisplacementScale");
+    gui
+      .add(floor.material, "displacementBias")
+      .min(-1)
+      .max(1)
+      .step(0.001)
+      .name("floorDisplacementBias");
 
     // Walls
     const walls = new THREE.Mesh(
@@ -266,9 +276,9 @@ const FirstThreeJsProj = () => {
         normalMap: wallNormalTexture,
         displacementMap: wallDisplacementTexture,
         displacementScale: 0,
-        displacementBias: 0
+        displacementBias: 0,
       })
-    )
+    );
 
     walls.position.y += 2.5 / 2;
 
@@ -282,10 +292,10 @@ const FirstThreeJsProj = () => {
         metalnessMap: roofARMTexture,
         normalMap: roofNormalTexture,
       })
-    )
+    );
 
     roof.position.y = 2.5 + 0.75;
-    roof.rotation.y = Math.PI * .25;
+    roof.rotation.y = Math.PI * 0.25;
 
     // Door
     const door = new THREE.Mesh(
@@ -300,7 +310,7 @@ const FirstThreeJsProj = () => {
         displacementBias: -0.04,
         normalMap: doorNormalTexture,
         metalnessMap: doorMetalTexture,
-        roughnessMap: doorRoughTexture
+        roughnessMap: doorRoughTexture,
       })
     );
 
@@ -315,7 +325,7 @@ const FirstThreeJsProj = () => {
       aoMap: bushARMTexture,
       roughnessMap: bushARMTexture,
       metalnessMap: bushARMTexture,
-      normalMap: bushNormalTexture
+      normalMap: bushNormalTexture,
     });
 
     const bush1 = new THREE.Mesh(bushGeometry, bushMaterial);
@@ -345,7 +355,7 @@ const FirstThreeJsProj = () => {
       aoMap: graveARMTexture,
       roughnessMap: graveARMTexture,
       metalnessMap: graveARMTexture,
-      normalMap: graveNormalTexture
+      normalMap: graveNormalTexture,
     });
 
     const graves = new THREE.Group();
@@ -355,19 +365,18 @@ const FirstThreeJsProj = () => {
 
       // Position the grave randomly but should not touch the house
       const angle = Math.random() * Math.PI * 2;
-      const radius = 3 + Math.random() * 4
+      const radius = 3 + Math.random() * 4;
       const x = Math.sin(angle) * radius;
       const z = Math.cos(angle) * radius;
 
       grave.position.x = x;
-      grave.position.y = Math.random() * .4;
+      grave.position.y = Math.random() * 0.4;
       grave.position.z = z;
 
       // Add randomness on the axes of graves by using rotation
       grave.rotation.x = (Math.random() - 0.5) * 0.4;
       grave.rotation.y = (Math.random() - 0.5) * 0.4;
       grave.rotation.z = (Math.random() - 0.5) * 0.4;
-
 
       // Add to grave group
       graves.add(grave);
@@ -413,14 +422,14 @@ const FirstThreeJsProj = () => {
     sky.scale.set(100, 100, 100);
     scene.add(sky);
 
-    sky.material.uniforms['turbidity'].value = 5;
-    sky.material.uniforms['rayleigh'].value = 1;
-    sky.material.uniforms['mieCoefficient'].value = 0.05;
-    sky.material.uniforms['mieDirectionalG'].value = 0.95;
-    sky.material.uniforms['sunPosition'].value.set(0.3, -0.05, -0.95);
+    sky.material.uniforms["turbidity"].value = 5;
+    sky.material.uniforms["rayleigh"].value = 1;
+    sky.material.uniforms["mieCoefficient"].value = 0.05;
+    sky.material.uniforms["mieDirectionalG"].value = 0.95;
+    sky.material.uniforms["sunPosition"].value.set(0.3, -0.05, -0.95);
 
     // Fog ^^
-    scene.fog = new THREE.FogExp2('#02343f', 0.1);
+    scene.fog = new THREE.FogExp2("#02343f", 0.1);
 
     // ANIMATE
     const timer = new Timer();
@@ -433,18 +442,26 @@ const FirstThreeJsProj = () => {
       const ghost1Angle = elapsedTime * 0.5;
       ghost1.position.x = Math.cos(ghost1Angle) * 4;
       ghost1.position.z = Math.sin(ghost1Angle) * 4;
-      ghost1.position.y = Math.sin(ghost1Angle) * Math.sin(ghost1Angle * 2.34) * Math.sin(ghost1Angle * 3.45);
+      ghost1.position.y =
+        Math.sin(ghost1Angle) *
+        Math.sin(ghost1Angle * 2.34) *
+        Math.sin(ghost1Angle * 3.45);
 
-      const ghost2Angle = - elapsedTime * 1;
+      const ghost2Angle = -elapsedTime * 1;
       ghost2.position.x = Math.cos(ghost2Angle) * 6;
       ghost2.position.z = Math.sin(ghost2Angle) * 6;
-      ghost2.position.y = Math.sin(ghost2Angle) * Math.sin(ghost2Angle * 2.34) * Math.sin(ghost2Angle * 3.45);
+      ghost2.position.y =
+        Math.sin(ghost2Angle) *
+        Math.sin(ghost2Angle * 2.34) *
+        Math.sin(ghost2Angle * 3.45);
 
       const ghost3Angle = elapsedTime * 1.5;
       ghost3.position.x = Math.cos(ghost3Angle) * 8;
       ghost3.position.z = Math.sin(ghost3Angle) * 8;
-      ghost3.position.y = Math.sin(ghost3Angle) * Math.sin(ghost3Angle * 2.34) * Math.sin(ghost3Angle * 3.45);
-
+      ghost3.position.y =
+        Math.sin(ghost3Angle) *
+        Math.sin(ghost3Angle * 2.34) *
+        Math.sin(ghost3Angle * 3.45);
 
       controls.update();
 
@@ -458,10 +475,10 @@ const FirstThreeJsProj = () => {
       renderer.dispose();
       document.body.removeChild(renderer.domElement);
       gui.destroy();
-    }
-  }, [])
+    };
+  }, []);
 
-  return null
-}
+  return null;
+};
 
-export default FirstThreeJsProj
+export default FirstThreeJsProj;

@@ -1,0 +1,11 @@
+Model Information:
+* title:	Metro Bench Model
+* source:	https://sketchfab.com/3d-models/metro-bench-model-b9c1d465c07746a781bdc15908d5b6f8
+* author:	Wille Evensson (https://sketchfab.com/Wevensson)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Metro Bench Model" (https://sketchfab.com/3d-models/metro-bench-model-b9c1d465c07746a781bdc15908d5b6f8) by Wille Evensson (https://sketchfab.com/Wevensson) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

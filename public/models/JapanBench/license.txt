@@ -1,0 +1,11 @@
+Model Information:
+* title:	Japan Train Station Bench
+* source:	https://sketchfab.com/3d-models/japan-train-station-bench-e23d79c1014a431bb913d15fc395b4f0
+* author:	ditovirnantio (https://sketchfab.com/ditovirnantio)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Japan Train Station Bench" (https://sketchfab.com/3d-models/japan-train-station-bench-e23d79c1014a431bb913d15fc395b4f0) by ditovirnantio (https://sketchfab.com/ditovirnantio) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

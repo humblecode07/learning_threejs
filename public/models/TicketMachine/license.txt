@@ -1,0 +1,11 @@
+Model Information:
+* title:	Train Ticket Machine
+* source:	https://sketchfab.com/3d-models/train-ticket-machine-1dcdc3cc7052413f8822878470bca9c6
+* author:	Nader.Kaseb (https://sketchfab.com/Nader.Kaseb)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Train Ticket Machine" (https://sketchfab.com/3d-models/train-ticket-machine-1dcdc3cc7052413f8822878470bca9c6) by Nader.Kaseb (https://sketchfab.com/Nader.Kaseb) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
