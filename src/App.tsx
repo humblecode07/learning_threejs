@@ -8,12 +8,12 @@
 // import ImportedModels from "./samples/ImportedModels";
 // import Lights from "./samples/Lights";
 // import Materials from "./samples/Materials";
-// import MixingHTMLandWebGL from "./samples/MixingHTMLandWebGL";
+import MixingHTMLandWebGL from "./samples/MixingHTMLandWebGL";
 // import ModifiedMaterials from "./samples/ModifiedMaterials";
 // import Particles from "./samples/Particles";
 // import PerformanceTips from "./samples/PerformanceTips";
 // import Physics from "./samples/Physics";
-import Portal from "./samples/Portal";
+// import Portal from "./samples/Portal";
 // import PostProcessing from "./samples/PostProcessing";
 // import RagingSea from "./samples/RagingSea";
 // import Raycaster from "./samples/Raycaster";
