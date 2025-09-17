@@ -1,4 +1,4 @@
-// import AnimatedGalaxy from "./samples/AnimatedGalaxy";
+import AnimatedGalaxy from "./samples/AnimatedGalaxy";
 // import BetterIntroAndHTMLLoader from "./samples/BetterIntroAndHTMLLoader";
 // import CreatingScene from "./samples/CreatingScene";
 // import CustomModelWithBlender from "./samples/CustomModelWithBlender";
@@ -8,7 +8,7 @@
 // import ImportedModels from "./samples/ImportedModels";
 // import Lights from "./samples/Lights";
 // import Materials from "./samples/Materials";
-import MixingHTMLandWebGL from "./samples/MixingHTMLandWebGL";
+// import MixingHTMLandWebGL from "./samples/MixingHTMLandWebGL";
 // import ModifiedMaterials from "./samples/ModifiedMaterials";
 // import Particles from "./samples/Particles";
 // import PerformanceTips from "./samples/PerformanceTips";
@@ -47,12 +47,12 @@ function App() {
       {/* <Shaders /> */}
       {/* <ShadersPatterns /> */}
       {/* <RagingSea /> */}
-      {/* <AnimatedGalaxy /> */}
+      <AnimatedGalaxy />
       {/* <ModifiedMaterials /> */}
       {/* <PostProcessing /> */}
       {/* <PerformanceTips /> */}
       {/* <BetterIntroAndHTMLLoader /> */}
-      <MixingHTMLandWebGL />
+{/*       <MixingHTMLandWebGL /> */}
 {/*       <Portal /> */}
     </>
   );
