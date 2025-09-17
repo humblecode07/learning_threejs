@@ -1,4 +1,4 @@
-import AnimatedGalaxy from "./samples/AnimatedGalaxy";
+// import AnimatedGalaxy from "./samples/AnimatedGalaxy";
 // import BetterIntroAndHTMLLoader from "./samples/BetterIntroAndHTMLLoader";
 // import CreatingScene from "./samples/CreatingScene";
 // import CustomModelWithBlender from "./samples/CustomModelWithBlender";
@@ -15,7 +15,7 @@ import AnimatedGalaxy from "./samples/AnimatedGalaxy";
 // import Physics from "./samples/Physics";
 // import Portal from "./samples/Portal";
 // import PostProcessing from "./samples/PostProcessing";
-// import RagingSea from "./samples/RagingSea";
+import RagingSea from "./samples/RagingSea";
 // import Raycaster from "./samples/Raycaster";
 // import RealisticRender from "./samples/RealisticRender";
 // import ScrollBasedAnimation from "./samples/ScrollBasedAnimation";
@@ -46,8 +46,8 @@ function App() {
       {/* <TrainStation /> */}
       {/* <Shaders /> */}
       {/* <ShadersPatterns /> */}
-      {/* <RagingSea /> */}
-      <AnimatedGalaxy />
+      <RagingSea />
+{/*       <AnimatedGalaxy /> */}
       {/* <ModifiedMaterials /> */}
       {/* <PostProcessing /> */}
       {/* <PerformanceTips /> */}
