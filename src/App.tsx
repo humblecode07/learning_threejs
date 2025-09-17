@@ -52,8 +52,8 @@ function App() {
       {/* <PostProcessing /> */}
       {/* <PerformanceTips /> */}
       {/* <BetterIntroAndHTMLLoader /> */}
-      {/* <MixingHTMLandWebGL /> */}
-      <Portal />
+      <MixingHTMLandWebGL />
+{/*       <Portal /> */}
     </>
   );
 }
