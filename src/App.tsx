@@ -15,7 +15,7 @@
 // import Physics from "./samples/Physics";
 // import Portal from "./samples/Portal";
 // import PostProcessing from "./samples/PostProcessing";
-import RagingSea from "./samples/RagingSea";
+// import RagingSea from "./samples/RagingSea";
 // import Raycaster from "./samples/Raycaster";
 // import RealisticRender from "./samples/RealisticRender";
 // import ScrollBasedAnimation from "./samples/ScrollBasedAnimation";
@@ -46,14 +46,14 @@ function App() {
       {/* <TrainStation /> */}
       {/* <Shaders /> */}
       {/* <ShadersPatterns /> */}
-      <RagingSea />
+{/*       <RagingSea /> */}
 {/*       <AnimatedGalaxy /> */}
       {/* <ModifiedMaterials /> */}
       {/* <PostProcessing /> */}
       {/* <PerformanceTips /> */}
       {/* <BetterIntroAndHTMLLoader /> */}
 {/*       <MixingHTMLandWebGL /> */}
-{/*       <Portal /> */}
+      <Portal />
     </>
   );
 }
