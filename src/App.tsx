@@ -13,8 +13,8 @@
 // import Particles from "./samples/Particles";
 // import PerformanceTips from "./samples/PerformanceTips";
 // import Physics from "./samples/Physics";
-// import Portal from "./samples/Portal";
-import PostProcessing from "./samples/PostProcessing";
+import Portal from "./samples/Portal";
+// import PostProcessing from "./samples/PostProcessing";
 // import RagingSea from "./samples/RagingSea";
 // import Raycaster from "./samples/Raycaster";
 // import RealisticRender from "./samples/RealisticRender";
@@ -49,11 +49,11 @@ function App() {
 {/*       <RagingSea /> */}
 {/*       <AnimatedGalaxy /> */}
       {/* <ModifiedMaterials /> */}
-      <PostProcessing />
+{/*       <PostProcessing /> */}
       {/* <PerformanceTips /> */}
       {/* <BetterIntroAndHTMLLoader /> */}
 {/*       <MixingHTMLandWebGL /> */}
-{/*       <Portal /> */}
+      <Portal />
     </>
   );
 }
